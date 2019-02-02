@@ -209,11 +209,49 @@ template: inverse
 template: inverse
 
 # C.Q.R.S.
+### Command & Query Responsibility Segregation
+---
+# A Command
+- Aim to change the system state
+- Can be rejected due to business logic
+---
+# A Query
+- Does no change the system state
+- Can be rejected for access control only
+---
+# Why separate them ?
+- Some example of bad design :
+ * get_latest API, that erase the latest 
+ * ... 
+- 
 ---
 template: inverse
 
 # Event Sourcing
 ---
+# An Event
+- Is imutable
+- Named in passed tense
+- ...
+---
+layout: false
+class: center, middle, 
+
+# Sources
+## Greg young
+https://twitter.com/gregyoung
+https://www.google.com/search?client=firefox-b-ab&q=Greg+youg+CQRS
+## Misc.
+https://martinfowler.com/bliki/CQRS.html
+https://www.youtube.com/user/erikrozendaal/videos
+---
+
+# Contacts :
+- Twitter : @jrouaix
+
+- Github : jrouaix
+
+- Hire : hire@beezup.com
 
     </textarea>
     <script src="remark-latest.min.js" type="text/javascript">
