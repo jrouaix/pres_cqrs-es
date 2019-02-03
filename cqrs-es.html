@@ -21,6 +21,8 @@
       .footnote {
         position: absolute;
         bottom: 3em;
+        right: 5em;
+        font-size: 0.8em;
       }
       li p { line-height: 1.25em; }
       .red { color: #fa0000; }
@@ -123,9 +125,9 @@ layout: true
 class: center, middle, inverse
 ---
 # C.Q.R.S / Event Sourcing
-JeUXdiCode
+JeUXdiCode - La Rochelle
 
-.footnote[Jérôme Rouaix - La Rochelle - 2019]
+.footnote[Jérôme Rouaix - 2019]
 ---
 layout: false
 .left-column[
@@ -191,8 +193,10 @@ layout: false
 
   ## Magic features
   - Super specialized read models
-  - Free business tracing
+  - Audit for free
+  - Business trace for free
   - Time machine 
+  - Easy to scale
 
 
   ## Can go wrong ?
@@ -200,6 +204,7 @@ layout: false
   - Ordering
   - Eventually consistent / Eventual consistency
   - Split brain
+  - Versioning events
 ]
 ---
 template: inverse
@@ -229,10 +234,71 @@ template: inverse
 
 # Event Sourcing
 ---
-# An Event
+# What is an Event ?
+## an Event : 
+- Reprensentes a state change of the system
+- Very carefully named in passed tense
+  * Ubiquitous language
+  * Don’t be CRUDy
+  * Event != Entity 
 - Is imutable
-- Named in passed tense
 - ...
+
+.footnote[
+https://blog.arkency.com/2016/05/the-anatomy-of-domain-event/
+]
+---
+# Aggregates & Streams
+<img src="FreshPaint-21-2014.01.04-10.55.10.png" alt="drawing" title="Event Sourcing" width="480em" style="float:right"/>
+## An Aggregate
+- Is the business Entity
+- has a state
+- handle a Command
+- produce 0-N Events
+- apply those events <br/> to its state
+
+
+## A Stream
+- Store all events for **1 aggregate**
+
+
+.footnote[
+https://thinkbeforecoding.com/post/2014/01/04/Event-Sourcing.-Draw-it
+]
+???
+The handle/decide method:
+- can decide to do nothing
+- can decide to return an error
+- Should never-ever-ever mutate the state !
+
+The apply method:
+- Will be called to hydrade the aggregate on the next command handle
+- Should never-ever-ever fail !
+
+---
+# Event Store
+## the source of all truth
+- has a very simple schema : [StreamId, EventNumber, EventName, EventPayload]
+- can be append only, **no update or delete** required
+
+
+- Store events **in order** for each streams
+- Guarantees transaction on a single stream
+- Is fast to query on a single stream,
+  * in **EventNumber** ascending order,
+  * and from a given position/EventNumber.
+
+<img src="eventstore-logo.png" title="EventStore logo"  style="float:right"/>
+- should be able to give an aggregated log of all streams 
+- great if you can re-partition streams according to projections needs
+.footnote[https://eventstore.org/]
+---
+# Projections
+
+---
+# Can go wrong ?
+<img src="2hardproblems.png" title="2 hard problems in distributed systems"  style="float:center"/>
+
 ---
 layout: false
 class: center, middle, 
@@ -240,6 +306,7 @@ class: center, middle,
 # Sources
 ## Greg young
 https://twitter.com/gregyoung
+https://eventstore.org/docs/event-sourcing-basics/index.html
 https://www.google.com/search?client=firefox-b-ab&q=Greg+youg+CQRS
 ## Misc.
 https://martinfowler.com/bliki/CQRS.html
