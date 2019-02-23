@@ -22,6 +22,16 @@
 				position: fixed;
 				bottom: 0%;
 				right: 5px;
+				font-size: 0.6em;
+			}
+			.slides .left{
+				text-align: left;
+			}
+			.slides .columns{
+				display: flex;
+			}
+			.col{
+				flex: 1;
 			}
 		</style>
 
@@ -41,7 +51,7 @@
 				<section data-markdown="_slides/slide.md" 
 					data-separator="^-----"
 					data-separator-vertical="^---"
-					data-separator-notes="^Note:"
+					data-separator-notes="^Notes?:"
 					data-attributes="--\s(.*?)$"
 					>
 				</section>

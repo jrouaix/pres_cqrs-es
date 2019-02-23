@@ -22,10 +22,9 @@ Jérôme Rouaix - 2019  <!-- .element: class="footer" -->
 ----- 
 # Summary
 ---
-## N-Tiers
-- Fullstack ?                                           <!-- .element: class="fragment" -->
-- So the only way of thinking is a stack ?              <!-- .element: class="fragment" -->
-- All database sucks !                                  <!-- .element: class="fragment" -->
+## Where we start
+- N-Tiers                                               <!-- .element: class="fragment" -->
+- All databases sucks !                                 <!-- .element: class="fragment" -->
 ---
 ## C.Q.R.S.
 - Command & Query Responsibility Segregation            <!-- .element: class="fragment" -->
@@ -41,38 +40,188 @@ Jérôme Rouaix - 2019  <!-- .element: class="footer" -->
 
 
 -----
-# N-Tiers 
+# Where we start
 -----
+## N-Tiers
+ <!-- -- class="left" -->
+<img src="../_assets/Overview_of_a_three-tier_application_vectorVersion.svg" title="Event Sourcing" width="500em" style="float:right"/>
+
+Front 
+- Present
+
+Back
+- Validate
+- Execute
+
+Data
+- Persist
+
+<div class="footer">
+Sources : https://en.wikipedia.org/wiki/Multitier_architecture
+</div>
+
+
+---
+## Some examples
+- S.P.A. / Api / Database
+- View / Controller / Repository .. Database
+- Facade Api / Business Api / Persistance Api .. Database
+
+
+---
 ## FullStack
-- why
+- What does it mean ?
+
+notes: 
+- is this because of languages ? Is there a fullheap ?
+- is the only way of thinking is in stack ?
+
+
+
+
+-----
+## Why it's not enough
+- All the calls are directed to the database
+- The database, usually a relational one, is hard to scale.
+- As the system grows, more and more pressure is added on the database
+
+- Read & Write needs are often not aligned
+  * Write : less volumes / transactions
+  * Read : more volumes / optional consistancy / aggregations ...
+ 
+-----
+## SOLUTION
+
+ADD CACHE OR FIND A BETTER DATABASE !
+
+notes:
+This is the end of the show !
+
+-----
+## All databases sucks !
+- Relational : Hard to scale
+- Documents (NoSql) : Hard to query, Hard to update in batchs
+- Graph databases : too specialized
+- Distributed file system : let's be serious
+- Search databse (ELK) : too specialized
+- Memory database (Redis) : too specialized, let's be serious !
+
+
 
 
 -----
 # C.Q.R.S.
 ### Command & Query Responsibility Segregation
 
-
 -----
-# A Command
+## A Command
 - Aim to change the system state
 - Can be rejected due to business logic
 
+</br>
 
------
-# A Query
-- Does no change the system state
-- Can be rejected for access control only
+## A Query
+- Does not change the system state
+- Have no business logic
 
-
------
-# Why separate them ?
-- Some example of bad design :
+Notes:
+# Do not split them and you're good for bad design
  * get_latest API, that erase the latest 
- * ... 
-- 
+ * get_
+ 
+
+---
+## On a single object
+```
+    interface IBadIterator
+    {
+        (bool, object) GetNext();
+    }
+
+    interface ICqrsIterator
+    {
+        object Current { get; }
+        bool MoveNext();
+    }
+``` 
+
+---
+## In the data layer
+```
+// Create, Update, Delete
+interface IWriteUserRepository {
+    int AddUser(User user);
+    void UpdateUser(int userId, User user);
+    void RemoveUser(string userId);
+}
+
+// Read
+interface IReadUserRepository {
+    User GetUser(int userId);
+    User[] GetUsers(...search parameters...);
+}
+```
+
+notes:
+Do not forget pagination when you return an Array !
+
+---
+## In the business layer
+```
+interface IUserManager {
+    int AddUser(User user);
+    void MoveUser(int userId, Adress newAdress);
+    void ElevateUser(int userId); // make an administrator
+    void DeactivateUser(int userId);
+    // ...
+}
+
+interface IUserSearchService {
+    UserData GetUser(int userId);
+    UserData[] GetUsers(...search parameters...);
+    UserData[] GetAdminUsers(...search parameters...);
+    UserData[] GetDeactivatedUsers(...search parameters...);
+    bool IsUserAdmin(int userId);
+    // ...
+}
+```
+
+note: 
+you can already see that the command/query sementics start to derive.
 
 
+---
+## In a database
 
+<img src="../_assets/views.gif"/>
+
+note:
+Views
+- decorelate read usage from the "real" model
+
+---
+## In a database - master / mirrors version
+
+<img src="../_assets/7090390-screen-shot-2017-11-01-at-121854-pm.png" width="600em"/>
+
+note:
+- Write only on the master
+- Read only on the mirrors
+
+---
+### multiple models ?
+
+-----
+# How to do it wrong
+
+---
+## Double write
+
+
+---
+
+---
+## Log shipping
 
 -----
 # Event Sourcing
@@ -98,7 +247,7 @@ https://blog.arkency.com/2016/05/the-anatomy-of-domain-event/
 
 -----
 # Aggregates & Streams
-<img src="../_assets/FreshPaint-21-2014.01.04-10.55.10.png" alt="drawing" title="Event Sourcing" width="480em" style="float:right"/>
+<img src="../_assets/FreshPaint-21-2014.01.04-10.55.10.png" title="Event Sourcing" width="480em" style="float:right"/>
 ## An Aggregate
 - Is the business Entity
 - has a state
@@ -158,8 +307,12 @@ The apply method:
 
 
 
-layout: false
-class: center, middle, 
+----- 
+## Should you do C.Q.R.S.
+
+----- 
+## Should you do Event Sourcing
+
 -----
 # Sources
 ## Greg young

@@ -1,32 +1,6 @@
 
 
 
-[# slide 2](
-layout: false
-.left-column[
-]
-.right-column[
-  # What is this about
-]
-
-
-
-
-
-layout: false
-.left-column[
-  Summary
-  ## N-Tiers
-]
-.right-column[
-  
-  ## Benefits
-    - SOLID principles
-  
-  ## Drawbacks
-    - Not enough
-
-]
 
 
 
@@ -87,6 +61,3 @@ layout: false
   - Versioning events
 ]
 
-
-
-template: inverse
