@@ -241,7 +241,9 @@ template: inverse
   * Ubiquitous language
   * Don’t be CRUDy
   * Event != Entity 
-- Is imutable
+- Is imutable !
+???
+Do you a favor : Keep it's structure as simple as you can, you'll have to manage versioning on Events.
 - ...
 
 .footnote[
@@ -249,13 +251,14 @@ https://blog.arkency.com/2016/05/the-anatomy-of-domain-event/
 ]
 ---
 # Aggregates & Streams
-<img src="FreshPaint-21-2014.01.04-10.55.10.png" alt="drawing" title="Event Sourcing" width="480em" style="float:right"/>
+<img src="assets/FreshPaint-21-2014.01.04-10.55.10.png" alt="drawing" title="Event Sourcing" width="480em" style="float:right"/>
 ## An Aggregate
 - Is the business Entity
 - has a state
 - handle a Command
-- produce 0-N Events
+- produce/emit 0-N Events
 - apply those events <br/> to its state
+- live in memory, no persistence needed
 
 
 ## A Stream
@@ -288,7 +291,7 @@ The apply method:
   * in **EventNumber** ascending order,
   * and from a given position/EventNumber.
 
-<img src="eventstore-logo.png" title="EventStore logo"  style="float:right"/>
+<img src="assets/eventstore-logo.png" title="EventStore logo"  style="float:right"/>
 - should be able to give an aggregated log of all streams 
 - great if you can re-partition streams according to projections needs
 .footnote[https://eventstore.org/]
@@ -297,7 +300,7 @@ The apply method:
 
 ---
 # Can go wrong ?
-<img src="2hardproblems.png" title="2 hard problems in distributed systems"  style="float:center"/>
+<img src="assets/2hardproblems.png" title="2 hard problems in distributed systems"  style="float:center"/>
 
 ---
 layout: false
@@ -319,6 +322,11 @@ https://www.youtube.com/user/erikrozendaal/videos
 - Github : jrouaix
 
 - Hire : hire@beezup.com
+
+# Credits
+
+Badass Robot :
+https://www.deviantart.com/gengoro-akemori/art/fusion-Megatron-Deathstroke-476913009
 
     </textarea>
     <script src="remark-latest.min.js" type="text/javascript">
