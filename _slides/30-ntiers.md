@@ -1,12 +1,8 @@
-
-
-
------
 # Where we start
 -----
 ## N-Tiers
 <!-- -- class="left" -->
-<img src="../_assets/Overview_of_a_three-tier_application_vectorVersion.svg" title="Event Sourcing" width="500em" style="float:right"/>
+<img src="../_assets/Overview_of_a_three-tier_application_vectorVersion.svg" width="500em" style="float:right"/>
 
 Front 
 - Present
@@ -47,6 +43,7 @@ notes:
 - The database, usually a relational one, is hard to scale.
 - As the system grows, more and more pressure is added on the database
 
+---
 - Read & Write needs are often not aligned
   * Write : less volumes / transactions
   * Read : more volumes / optional consistancy / aggregations ...
@@ -54,7 +51,8 @@ notes:
 -----
 ## SOLUTION
 
-ADD CACHE OR FIND A BETTER DATABASE !
+- ADD CACHE !
+- OR FIND A BETTER DATABASE !
 
 notes:
 This is the end of the show !

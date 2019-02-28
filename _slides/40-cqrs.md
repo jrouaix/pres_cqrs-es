@@ -1,4 +1,3 @@
-
 # C.Q.R.S.
 ### Command & Query Responsibility Segregation
 
@@ -16,8 +15,6 @@
 Notes:
 # Do not split them and you're good for bad design
  * get_latest API, that erase the latest 
- * get_
- 
 
 ---
 ## On a single object
@@ -32,7 +29,7 @@ Notes:
         object Current { get; }
         bool MoveNext();
     }
-``` 
+```
 
 ---
 ## In the data layer
@@ -78,7 +75,6 @@ interface IUserSearchService {
 note: 
 you can already see that the command/query sementics start to derive.
 
-
 ---
 ## In a database
 
@@ -100,14 +96,23 @@ note:
 ---
 ### multiple models ?
 
+notes:
+- what if we'd like to have multiple distinct models ? 
+- one for the master/writes, one or some for the read needs ?
+
 -----
 # How to do it wrong
 
 ---
-## Double write
+## Dual write
 
+<img src="../_assets/dual_writes.gif" width="700em"/>
 
----
+<div class="footer">
+https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/
+</div>
 
----
-## Log shipping
+notes :
+- what if any of this writes go wrong ?
+- will your system have a way to get back to consistency ?
+- How the F... will be performant ?

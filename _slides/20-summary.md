@@ -11,6 +11,6 @@
 ---
 ## Event Sourcing
 - Store the log, project the state                      <!-- .element: class="fragment" -->
-- Magic features / super power for free                 <!-- .element: class="fragment" -->
+- Magic features / super powers for free                <!-- .element: class="fragment" -->
 - Can go wrong ?                                        <!-- .element: class="fragment" -->
 
