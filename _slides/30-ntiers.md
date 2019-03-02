@@ -1,4 +1,5 @@
 # Where we start
+
 -----
 ## N-Tiers
 <!-- -- class="left" -->
@@ -18,7 +19,6 @@ Data
 Sources : https://en.wikipedia.org/wiki/Multitier_architecture
 </div>
 
-
 ---
 ## Some examples
 - S.P.A. / Api / Database
@@ -35,19 +35,17 @@ notes:
 - is the only way of thinking is in stack ?
 
 
-
-
 -----
 ## Why it's not enough
-- All the calls are directed to the database
+- All the calls are directed to the data tiers
 - The database, usually a relational one, is hard to scale.
-- As the system grows, more and more pressure is added on the database
+- As the system grows, more and more pressure is added on last tiers : data.
 
 ---
 - Read & Write needs are often not aligned
   * Write : less volumes / transactions
   * Read : more volumes / optional consistancy / aggregations ...
- 
+
 -----
 ## SOLUTION
 

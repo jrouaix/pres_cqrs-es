@@ -1,8 +1,37 @@
 
 
+## ARTICLES 
+https://pyxis-studio.com/fr/cqrs-event-sourcing/
 
 
 
+## CONS
+
+https://www.linkedin.com/pulse/ugly-event-sourcing-real-world-production-issues-dennis-doomen/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 
 
 layout: false
 .left-column[
