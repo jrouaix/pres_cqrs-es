@@ -3,7 +3,9 @@
 ## ARTICLES 
 https://pyxis-studio.com/fr/cqrs-event-sourcing/
 
+https://ookami86.github.io/event-sourcing-in-practice/#event-sourcing-advantages/01-all-advantages.md
 
+https://ookami86.github.io/event-sourcing-in-practice/#further-reading-1.md
 
 ## CONS
 

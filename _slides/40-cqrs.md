@@ -112,7 +112,7 @@ notes:
 https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/
 </div>
 
-notes :
+Notes:
 - what if any of this writes go wrong ?
 - will your system have a way to get back to consistency ?
 - How the F... will this be performant ?

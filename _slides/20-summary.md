@@ -13,4 +13,12 @@
 - Store the log, project the state                      <!-- .element: class="fragment" -->
 - Magic features / super powers for free                <!-- .element: class="fragment" -->
 - Can go wrong ?                                        <!-- .element: class="fragment" -->
+---
+## What we won't see
+- DDD in details                                        <!-- .element: class="fragment" -->
+- Command handlers                                      <!-- .element: class="fragment" -->
+- Process managers                                      <!-- .element: class="fragment" -->
+
+
+
 
