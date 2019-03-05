@@ -2,7 +2,7 @@
 ---
 ## Where we start
 - N-Tiers                                               <!-- .element: class="fragment" -->
-- All databases sucks !                                 <!-- .element: class="fragment" -->
+- Why it's not enough                                   <!-- .element: class="fragment" -->
 ---
 ## C.Q.R.S.
 - Command & Query Responsibility Segregation            <!-- .element: class="fragment" -->
