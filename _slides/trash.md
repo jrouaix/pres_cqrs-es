@@ -24,7 +24,24 @@ https://www.linkedin.com/pulse/ugly-event-sourcing-real-world-production-issues-
 
 
 
+Tu lis trop le ppt
+Ppt trop verbeux
+Manque une transition entre cqrs et le monde n tier. Lexplication sur le pk le cqrs est la reponse est un peu trop rapide/succinte
 
+
+Finalement, quel est le lien entre cqrs et eventsourcing? sont-il disociable?
+Manque transtiion entre ES et aggregate
+Manque archi global ES avec example a lappui. + montrer avec le meme example que c’est shitty en n-tier. 
+ES bonus point pas necessaire.
+De maniere general, c’est bcp trop theorique tout ca! Need un exemple concret tout le long.
+Idempotency.ordering => on comprends rien, confus.
+
+All Db sucks => typo
+The event store => replace “required” by “possible”
+Can go wrong? => c’est pas correct. 
+
+
+=> Grosso modo: avoir un example fil rouge que tu peux utiliser tout au long de la presentaiton. Ne pas hesiter a re-expliquer les trucs techniques comme aggregats, stream, etc. ne pas oublier que les gars n’y connaissent rien!
 
 
 

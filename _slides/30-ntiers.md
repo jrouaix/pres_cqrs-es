@@ -61,6 +61,6 @@ This is the end of the show !
 - Documents (NoSql) : Hard to query, Hard to update in batchs
 - Graph databases : too specialized
 - Distributed file system : let's be serious
-- Search databse (ELK) : too specialized
+- Search database (ELK) : too specialized
 - Memory database (Redis) : too specialized, let's be serious !
 
