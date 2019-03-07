@@ -1,7 +1,7 @@
 # C.Q.R.S.
 ### Command & Query Responsibility Segregation
 
------
+---
 ## A Command
 - Aim to change the system state
 - Can be rejected due to business logic
@@ -16,7 +16,7 @@ Notes:
 # Do not split them and you're good for bad design
  * get_latest API, that erase the latest 
 
----
++++
 ## On a single object
 ```
     interface IBadIterator
@@ -31,7 +31,7 @@ Notes:
     }
 ```
 
----
++++
 ## In the data layer
 ```
 // Create, Update, Delete
@@ -51,7 +51,7 @@ interface IReadUserRepository {
 notes:
 Do not forget pagination when you return an Array !
 
----
++++
 ## In the business layer
 ```
 interface IUserManager {
@@ -75,7 +75,7 @@ interface IUserSearchService {
 note: 
 you can already see that the command/query sementics start to derive.
 
----
++++
 ## In a database
 
 <img src="../_assets/views.gif"/>
@@ -84,7 +84,7 @@ note:
 Views
 - decorelate read usage from the "real" model
 
----
++++
 ## In a database - master / mirrors version
 
 <img src="../_assets/7090390-screen-shot-2017-11-01-at-121854-pm.png" width="600em"/>
@@ -93,7 +93,7 @@ note:
 - Write only on the master
 - Read only on the mirrors
 
----
++++
 ### multiple models ?
 
 notes:
@@ -103,7 +103,7 @@ notes:
 -----
 # How to do it wrong
 
----
++++
 ## Dual write
 
 <img src="../_assets/dual_writes.gif" width="700em"/>

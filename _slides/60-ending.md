@@ -10,7 +10,7 @@ https://www.youtube.com/user/erikrozendaal/videos
 
 
 
------
+---
 # Contacts :
 - Twitter : @jrouaix
 
@@ -18,7 +18,7 @@ https://www.youtube.com/user/erikrozendaal/videos
 
 - Hire : hire@beezup.com
 
------
+---
 # Credits
 
 Badass Robot :
