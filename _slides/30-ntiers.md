@@ -15,9 +15,9 @@ Back
 Data
 - Persist
 
-<div class="footer">
+@snap[south-west byline text-06]
 Sources : https://en.wikipedia.org/wiki/Multitier_architecture
-</div>
+@snapend
 
 +++
 ## Some examples

@@ -108,9 +108,9 @@ notes:
 
 <img src="../_assets/dual_writes.gif" width="700em"/>
 
-<div class="footer">
+@snap[south-west byline text-06]
 https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/
-</div>
+@snapend
 
 Notes:
 - what if any of this writes go wrong ?
