@@ -2,9 +2,7 @@
 
 +++
 ## N-Tiers
-<!-- -- class="left" -->
----?image=_assets/Overview_of_a_three-tier_application_vectorVersion.svg&size=auto 50%&position=right
-
+@snap[west splitscreen] 
 Front 
 - Present
 
@@ -14,6 +12,16 @@ Back
 
 Data
 - Persist
+@snapend
+
+@snap[east splitscreen fragment]
+![NTiers](_assets/Overview_of_a_three-tier_application_vectorVersion.svg)
+<!-- ---?image=&size=auto 50%&position=right -->
+
+@snapend
+
+
+
 
 @snap[south-west byline text-06]
 Sources : https://en.wikipedia.org/wiki/Multitier_architecture
