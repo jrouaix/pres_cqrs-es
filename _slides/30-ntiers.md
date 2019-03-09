@@ -3,15 +3,15 @@
 +++
 ## N-Tiers
 @snap[west splitscreen] 
-Front 
-- Present
+Front <br /> 
+- Present <br />
+<br />
+Back <br />
+- Validate <br />
+- Execute <br />
 
-Back
-- Validate
-- Execute
-
-Data
-- Persist
+Data <br />
+- Persist <br />
 @snapend
 
 @snap[east splitscreen fragment]
