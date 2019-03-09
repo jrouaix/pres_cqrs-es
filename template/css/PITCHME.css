@@ -8,6 +8,8 @@
 
 .split-screen-img {
   border-radius: 8% !important;
+  max-height: 50%;
+  max-width: 40%;
 }
 
 .split-screen-list li {
