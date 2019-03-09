@@ -1,6 +1,6 @@
 @title[Title]
 
-<img src="../_assets/CandQ.png"/>
+![Title](_assets/CandQ.png)
 
 JeUXdiCode - La Rochelle
 
