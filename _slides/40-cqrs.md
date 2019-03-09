@@ -12,7 +12,7 @@
 - Does not change the system state
 - Have no business logic
 
-Notes:
+note:
 # Do not split them and you're good for bad design
  * get_latest API, that erase the latest 
 
@@ -48,7 +48,7 @@ interface IReadUserRepository {
 }
 ```
 
-notes:
+note:
 Do not forget pagination when you return an Array !
 
 +++
@@ -78,16 +78,17 @@ you can already see that the command/query sementics start to derive.
 +++
 ## In a database
 
-<img src="../_assets/views.gif"/>
+![Views](_assets/views.gif)
 
 note:
 Views
-- decorelate read usage from the "real" model
+- are distinct "view angles" from the same model  
+- match the read side needs
 
 +++
 ## In a database - master / mirrors version
 
-<img src="../_assets/7090390-screen-shot-2017-11-01-at-121854-pm.png" width="600em"/>
+![Mirrors](_assets/7090390-screen-shot-2017-11-01-at-121854-pm.png)
 
 note:
 - Write only on the master
@@ -96,23 +97,24 @@ note:
 +++
 ### multiple models ?
 
-notes:
+note: 
 - what if we'd like to have multiple distinct models ? 
 - one for the master/writes, one or some for the read needs ?
+
+
 
 -----
 # How to do it wrong
 
 +++
 ## Dual write
-
-<img src="../_assets/dual_writes.gif" width="700em"/>
+![Views](_assets/dual_writes.gif)
 
 @snap[south-west byline text-06]
 https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/
 @snapend
 
-Notes:
+note:
 - what if any of this writes go wrong ?
 - will your system have a way to get back to consistency ?
 - How the F... will this be performant ?

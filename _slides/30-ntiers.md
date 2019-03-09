@@ -9,11 +9,9 @@
 @snap[west splitscreen] 
 Front <br /> 
 - Present <br />
-<br />
 Back <br />
 - Validate <br />
 - Execute <br />
-<br />
 Data <br />
 - Persist <br />
 @snapend
@@ -33,12 +31,11 @@ Sources : https://en.wikipedia.org/wiki/Multitier_architecture
 - View / Controller / Repository .. Database
 - Facade Api / Business Api / Persistance Api .. Database
 
-
 +++
 ## FullStack
 - What does it mean ?
 
-notes: 
+note: 
 - is this because of languages ? Is there a fullheap ?
 - is the only way of thinking is in stack ?
 
@@ -60,7 +57,7 @@ notes:
 - ADD CACHE !
 - OR FIND A BETTER DATABASE !
 
-notes:
+note:
 This is the end of the show !
 
 +++

@@ -18,6 +18,9 @@
 - DDD in details                                        <!-- .element: class="fragment" -->
 - Command handlers                                      <!-- .element: class="fragment" -->
 - Process managers                                      <!-- .element: class="fragment" -->
+- EventSourcing & RGPD                                  <!-- .element: class="fragment" -->
+
+
 
 
 
