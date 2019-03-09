@@ -13,7 +13,7 @@ published : true
 # Theme Setting
 # Doc: https://gitpitch.com/docs/settings/theme
 #
-theme : simple
+theme : black
 
 #
 # Theme-Override Setting
@@ -21,12 +21,6 @@ theme : simple
 #
 theme-override : template/css/PITCHME.css
 
-#
-# Logo Setting
-# https://gitpitch.com/docs/settings/logo
-#
-logo : template/img/logo.png
-logo-position : top-left
 
 #
 # Footnote Setting

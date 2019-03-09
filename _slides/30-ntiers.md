@@ -3,7 +3,7 @@
 +++
 ## N-Tiers
 <!-- -- class="left" -->
-<img src="../_assets/Overview_of_a_three-tier_application_vectorVersion.svg" width="500em" style="float:right"/>
+---?image=_assets/Overview_of_a_three-tier_application_vectorVersion.svg&size=auto 50%&position=right
 
 Front 
 - Present
