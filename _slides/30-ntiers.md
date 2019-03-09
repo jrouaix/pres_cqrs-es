@@ -1,6 +1,7 @@
 # Where we start
 
-+++@title[N-Tiers]
++++
+@title[N-Tiers]
 @snap[north] 
 ## N-Tiers
 @snapend
@@ -18,8 +19,7 @@ Data <br />
 @snapend
 
 @snap[east splitscreen]
-<!-- ---?image=_assets/Overview_of_a_three-tier_application_vectorVersion.png&size=auto 50%&position=right -->
-
+---?image=_assets/Overview_of_a_three-tier_application_vectorVersion.png&size=auto 50%
 @snapend
 
 
