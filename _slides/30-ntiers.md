@@ -19,7 +19,7 @@ Data <br />
 @snapend
 
 @snap[east splitscreen]
----?image=_assets/Overview_of_a_three-tier_application_vectorVersion.png&size=auto 50%
+?image=_assets/Overview_of_a_three-tier_application_vectorVersion.png&size=auto 50%
 @snapend
 
 
