@@ -1,7 +1,10 @@
 # Where we start
 
-+++
++++@title[N-Tiers]
+@snap[north] 
 ## N-Tiers
+@snapend
+
 @snap[west splitscreen] 
 Front <br /> 
 - Present <br />
@@ -9,14 +12,13 @@ Front <br />
 Back <br />
 - Validate <br />
 - Execute <br />
-
+<br />
 Data <br />
 - Persist <br />
 @snapend
 
-@snap[east splitscreen fragment]
-![NTiers](_assets/Overview_of_a_three-tier_application_vectorVersion.svg)
-<!-- ---?image=&size=auto 50%&position=right -->
+@snap[east splitscreen]
+<!-- ---?image=_assets/Overview_of_a_three-tier_application_vectorVersion.png&size=auto 50%&position=right -->
 
 @snapend
 
