@@ -19,10 +19,8 @@ Data <br />
 @snapend
 
 @snap[east splitscreen]
-?image=_assets/Overview_of_a_three-tier_application_vectorVersion.png&size=auto 50%
+![N-Tiers](_assets/Overview_of_a_three-tier_application_vectorVersion.png)
 @snapend
-
-
 
 
 @snap[south-west byline text-06]
