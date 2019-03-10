@@ -86,7 +86,7 @@ Views
 - match the read side needs
 
 +++
-## In a database - master / mirrors version
+#### In a database - master / mirrors version
 
 ![Mirrors](_assets/7090390-screen-shot-2017-11-01-at-121854-pm.png)
 
@@ -108,7 +108,7 @@ note:
 
 +++
 ## Dual write
-![Views](_assets/dual_writes.gif)
+![Views](_assets/dual_writes-optim.gif)
 
 @snap[south-west byline text-06]
 https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/
