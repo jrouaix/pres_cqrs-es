@@ -107,7 +107,7 @@ note:
 # How to do it wrong
 
 +++
-## Dual write
+### Dual writes
 ![Views](_assets/dual_writes-optim.gif)
 
 @snap[south-west byline text-06]
