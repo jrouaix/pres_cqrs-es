@@ -47,6 +47,7 @@ note:
 - As the system grows, more and more pressure is added on last tiers : data.
 
 +++
+## Read != Write
 - Read & Write needs are often not aligned
   * Write : less volumes / transactions
   * Read : more volumes / optional consistancy / aggregations ...
@@ -62,10 +63,9 @@ This is the end of the show !
 
 +++
 ## All databases sucks !
-- Relational : Hard to scale
-- Documents (NoSql) : Hard to query, Hard to update in batchs
-- Graph databases : too specialized
-- Distributed file system : let's be serious
-- Search database (ELK) : too specialized
-- Memory database (Redis) : too specialized, let's be serious !
+i.e. : not all databases are made equal
+
++++
+
+![Databases](_assets/DbSkills.png)
 
