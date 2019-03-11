@@ -1,6 +1,3 @@
-# Where we start
-
-+++
 @title[N-Tiers]
 @snap[north] 
 ## N-Tiers
