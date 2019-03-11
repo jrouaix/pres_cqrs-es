@@ -3,14 +3,14 @@
 
 ---
 ## A Command
-- Aim to change the system state
+- Aims to change the system state
 - Can be rejected due to business logic
 
 </br>
 
 ## A Query
 - Does not change the system state
-- Have no business logic
+- Has no business logic
 
 note:
 # Do not split them and you're good for bad design
