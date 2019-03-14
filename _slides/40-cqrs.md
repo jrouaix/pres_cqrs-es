@@ -1,4 +1,5 @@
-# C.Q.R.S.
+# C.Q.S. to C.Q.R.S.
+### Command & Query Separation
 ### Command & Query Responsibility Segregation
 
 ---
@@ -24,10 +25,16 @@ note:
         (bool, object) GetNext();
     }
 
-    interface ICqrsIterator
+    interface ICqsIterator
     {
+        bool MoveNext(); // false could be considered as an error
         object Current { get; }
-        bool MoveNext();
+    }
+
+    interface IEvenBetterIterator {
+        void MoveNext();
+        bool HasCurrent { get; }
+        object Current { get; }
     }
 ```
 

@@ -29,15 +29,6 @@ Sources : https://en.wikipedia.org/wiki/Multitier_architecture
 - Facade Api / Business Api / Persistance Api .. Database
 
 +++
-## FullStack
-- What does it mean ?
-
-note: 
-- is this because of languages ? Is there a fullheap ?
-- is the only way of thinking is in stack ?
-
-
-+++
 ## Why it's not enough
 - All the calls are directed to the data tiers
 - The database, usually a relational one, is hard to scale.
