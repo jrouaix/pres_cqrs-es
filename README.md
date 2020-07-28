@@ -2,7 +2,7 @@
 
 Go to : https://gitpitch.com/jrouaix/cqrs-es-presentation/master
 
-# GitPitch - The Template
+# GitPitch - PRESS `S` to show speaker notes
 
 *THE FASTEST WAY FROM IDEA TO PRESENTATION*
 
