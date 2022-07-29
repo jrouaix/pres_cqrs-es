@@ -1,0 +1,99 @@
+%YAML 1.2
+---
+description: "from CQS to CQRS to full blown event sourcing"
+author: "jrouaix"
+option:
+  hash: true
+  slide number: c/t
+  pdf max pages per slide: 1
+chapter-header: true
+gear!: &gear https://raw.githubusercontent.com/rust-lang/rust-artwork/master/logo/rust-logo-gear-only.svg
+icon: *gear
+background:
+  src: *gear
+  size: 50%
+  opacity: 0.2
+footer:
+  src: *gear
+  width: 50pt
+  label: Reveal.yaml
+  link: https://github.com/KmolYuan/reveal-yaml-rs/
+style: |
+  .reveal .slide-number {
+      font-size: 24pt;
+      position: absolute;
+      right: 2em;
+      top: 1em;
+      color: #877b68;
+      background-color: transparent;
+  }
+  .left-align p {
+      text-align: left;
+  }
+---
+- title: "CQRS - EventSourcing"
+  id: title
+  doc: |
+    JeUXdiCode - 2019 - La Rochelle 
+  h-stack: 
+    - doc: Jérôme Rouaix
+
+  notes: |
+    set the screen turn off after 10 minutes in Power & Sleep
+
+- title: "Me"
+  id: me
+  doc: |
+    - Jérôme
+    - 40+ years old / half+ in I.T.
+    - Freelance Dev
+    - xp in .net C#, Rust
+    - less xp in plenty of stuff
+
+- title: "Summary"
+  id: summary
+  doc: |
+    ### Mission Start
+    - N-Tiers
+    - Why it's not enough
+    
+    ### C.Q.R.S.
+    - Command & Query Responsibility Segregation
+    - Where does it apply
+    - How to do it wrong ...
+    
+    ### Event Sourcing
+    - Store the log, project the state
+    - Magic features / super powers for free
+    - What could possibly go wrong ?
+    
+    ### What we won't see
+    - DDD in details
+    - Command handlers
+    - Process managers
+    - EventSourcing & RGPD
+
+- title: "N-Tiers"
+  id: n-tiers
+  v-stack: 
+    - h-stack:
+      - doc: |
+          #### Front
+          - Present
+          #### Back
+          - Validate
+          - Execute
+          ####  Data
+          - Persist
+      - img:
+        label: N Tiers
+        src: _assets/Overview_of_a_three-tier_application_vectorVersion.png
+        pop: true
+    - doc: |
+        [📖 Source](https://en.wikipedia.org/wiki/Multitier_architecture)
+
+  sub:
+  - title-hidden: N Tiers Examples
+    id: n-tiers-examples
+    doc: |
+      test
