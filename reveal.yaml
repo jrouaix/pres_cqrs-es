@@ -2,6 +2,7 @@
 ---
 description: "from CQS to CQRS to full blown event sourcing"
 author: "jrouaix"
+theme: league # league # night
 option:
   hash: true
   slide number: c/t
@@ -9,26 +10,13 @@ option:
 chapter-header: true
 gear!: &gear https://raw.githubusercontent.com/rust-lang/rust-artwork/master/logo/rust-logo-gear-only.svg
 icon: *gear
-background:
-  src: *gear
-  size: 50%
-  opacity: 0.2
-footer:
-  src: *gear
-  width: 50pt
-  label: Reveal.yaml
-  link: https://github.com/KmolYuan/reveal-yaml-rs/
 style: |
   .reveal .slide-number {
-      font-size: 24pt;
       position: absolute;
       right: 2em;
       top: 1em;
       color: #877b68;
       background-color: transparent;
-  }
-  .left-align p {
-      text-align: left;
   }
 ---
 - title: "CQRS - EventSourcing"
@@ -52,26 +40,30 @@ style: |
 
 - title: "Summary"
   id: summary
-  doc: |
-    ### Mission Start
-    - N-Tiers
-    - Why it's not enough
-    
-    ### C.Q.R.S.
-    - Command & Query Responsibility Segregation
-    - Where does it apply
-    - How to do it wrong ...
-    
-    ### Event Sourcing
-    - Store the log, project the state
-    - Magic features / super powers for free
-    - What could possibly go wrong ?
-    
-    ### What we won't see
-    - DDD in details
-    - Command handlers
-    - Process managers
-    - EventSourcing & RGPD
+  sub:
+    - title: Mission start
+      doc: |
+        - N-Tiers
+        - Why it's not enough
+
+    - title: C.Q.R.S.
+      doc: |
+        - Command & Query Responsibility Segregation
+        - Where does it apply
+        - How to do it wrong ...
+
+    - title: Event Sourcing
+      doc: |
+        - Store the log, project the state
+        - Magic features / super powers for free
+        - What could possibly go wrong ?
+
+    - title:  What we won't see
+      doc: |
+        - DDD in details
+        - Command handlers
+        - Process managers
+        - EventSourcing & RGPD
 
 - title: "N-Tiers"
   id: n-tiers
