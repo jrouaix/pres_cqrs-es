@@ -248,11 +248,6 @@ sub:
 
 title: How to do it wrong
 id: how_to_do_it_wrong
-doc: |
-  ### Command & Query Separation
-  ### Command & Query Responsibility Segregation
-note: |
-  Command ? Query ?
 
 sub:
   - v-stack:
