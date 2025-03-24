@@ -1,13 +1,15 @@
 %YAML 1.2
+
 ---
 description: "from CQS to CQRS to full blown event sourcing"
 author: "jrouaix"
+chapter-header: true
+outline: false
 theme: league # league # night
 option:
   hash: true
   slide number: c/t
   pdf max pages per slide: 1
-chapter-header: true
 gear!: &gear https://raw.githubusercontent.com/rust-lang/rust-artwork/master/logo/rust-logo-gear-only.svg
 icon: *gear
 style: |
@@ -18,74 +20,490 @@ style: |
       color: #877b68;
       background-color: transparent;
   }
+  .reveal pre code {
+    padding: 5px;
+    overflow: auto;
+    max-height: 600px;
+    word-wrap: normal;
+    font-size: 0.6em;
+    line-height: 1.1em;
+  }
+  .left-align p {
+      text-align: left;
+  }
 ---
-- title: "CQRS - EventSourcing"
-  id: title
-  doc: |
-    JeUXdiCode - 2019 - La Rochelle 
-  h-stack: 
-    - doc: Jérôme Rouaix
 
-  notes: |
-    set the screen turn off after 10 minutes in Power & Sleep
+title: CQRS - EventSourcing
+id: title
+doc: |
+  2025 - La Rochelle
+h-stack:
+  - doc: Jérôme Rouaix
+note: |
+  set the screen turn off after 10 minutes in Power & Sleep
 
-- title: "Me"
-  id: me
-  doc: |
-    - Jérôme
-    - 40+ years old / half+ in I.T.
-    - Freelance Dev
-    - xp in .net C#, Rust
-    - less xp in plenty of stuff
+---
 
-- title: "Summary"
-  id: summary
-  sub:
-    - title: Mission start
-      doc: |
-        - N-Tiers
-        - Why it's not enough
+title: "Me"
+id: me
+doc: |
+  - Jérôme
+  - 40+ years old / half+ in I.T.
+  - Freelance Dev
+  - xp in .net C#, Rust
+  - less xp in plenty of stuff
 
-    - title: C.Q.R.S.
-      doc: |
-        - Command & Query Responsibility Segregation
-        - Where does it apply
-        - How to do it wrong ...
+---
 
-    - title: Event Sourcing
-      doc: |
-        - Store the log, project the state
-        - Magic features / super powers for free
-        - What could possibly go wrong ?
-
-    - title:  What we won't see
-      doc: |
-        - DDD in details
-        - Command handlers
-        - Process managers
-        - EventSourcing & RGPD
-
-- title: "N-Tiers"
-  id: n-tiers
-  v-stack: 
-    - h-stack:
-      - doc: |
-          #### Front
-          - Present
-          #### Back
-          - Validate
-          - Execute
-          ####  Data
-          - Persist
-      - img:
-        label: N Tiers
-        src: _assets/Overview_of_a_three-tier_application_vectorVersion.png
-        pop: true
-    - doc: |
-        [📖 Source](https://en.wikipedia.org/wiki/Multitier_architecture)
-
-  sub:
-  - title-hidden: N Tiers Examples
-    id: n-tiers-examples
+title: "Summary"
+id: summary
+sub:
+  - title: Mission start
     doc: |
-      test
+      - N-Tiers
+      - Why it's not enough
+
+  - title: C.Q.R.S.
+    doc: |
+      - Command & Query Responsibility Segregation
+      - Where does it apply
+      - How to do it wrong ...
+
+  - title: Event Sourcing
+    doc: |
+      - Store the log, project the state
+      - Magic features / super powers for free
+      - What could possibly go wrong ?
+
+  - title:  What we won't see
+    doc: |
+      - DDD in details
+      - Command handlers
+      - Process managers
+      - EventSourcing & RGPD
+
+---
+
+title: "N-Tiers"
+id: n-tiers
+v-stack: 
+  - h-stack:
+    - doc: |
+        #### Front
+        - Present
+        #### Back
+        - Validate
+        - Execute
+        ####  Data
+        - Persist
+    - img:
+      label: N Tiers
+      src: _assets/Overview_of_a_three-tier_application_vectorVersion.png
+      pop: true
+  - doc: |
+      [📖 Source](https://en.wikipedia.org/wiki/Multitier_architecture)
+
+sub:
+  - title: Some examples
+    doc: |
+      - S.P.A. / Api / Database
+      - View / Controller / Repository .. Database
+      - Facade Api / Business Api / Persistance Api .. Database
+  - title: Why it's not enough
+    doc: |
+      - All the calls are directed to the data tiers
+      - The database, usually a relational one, is hard to scale.
+      - As the system grows, more and more pressure is added on last tiers : data.
+  - title: Read != Write
+    doc: |
+      - Read & Write needs are often not aligned
+        * Write : less volumes / transactions
+        * Read : more volumes / optional consistancy / aggregations ...
+  - title: SOLUTION
+    doc: |
+      - ADD CACHE !
+      - OR FIND A BETTER DATABASE !
+    note: |
+      - This is the end of the show !
+  - title: All databases sucks !
+    v-stack:
+      - img:
+        - src: _assets/DbSkills.png
+      - doc: |
+          i.e. : not all databases are made equal
+
+---
+
+title: C.Q.S. to C.Q.R.S.
+id: cqrs
+doc: |
+  ### Command & Query Separation
+  ### Command & Query Responsibility Segregation
+note: |
+  Command ? Query ?
+
+sub:
+  - v-stack:
+      - doc: |
+          # A Command
+          - Aims to change the system state
+          - Can be rejected due to business logic
+      - doc: |
+          # A Query
+          - Does not change the system state
+          - Has no business logic
+    note: |
+      #### Do not split them and you're good for bad design :
+      * get_latest API, that erase the latest data
+
+  - doc: |
+      # On a single object
+      ```
+          interface IBadIterator
+          {
+              (bool, object) GetNext();
+          }
+
+          interface ICqsIterator
+          {
+              bool MoveNext(); // false could be considered as an error
+              object Current { get; }
+          }
+
+          interface IEvenBetterIterator {
+              void MoveNext(); // Command
+              bool HasCurrent { get; } // Query
+              object Current { get; }  // Query
+          }
+      ```
+  - doc: |
+      # In the data layer
+      ```
+      // Create, Update, Delete
+      interface IWriteUserRepository {
+          int AddUser(User user);
+          void UpdateUser(int userId, User user);
+          void RemoveUser(string userId);
+      }
+
+      // Read
+      interface IReadUserRepository {
+          User GetUser(int userId);
+          User[] GetUsers(...search parameters...);
+      }
+      ```
+    note:
+      Do not forget pagination when you return an Array !
+
+  - doc: |
+      # In the business layer
+      ```
+      interface IUserManager {
+          int AddUser(User user);
+          void MoveUser(int userId, Adress newAdress);
+          void ElevateUser(int userId); // make an administrator
+          void DeactivateUser(int userId);
+          // ...
+      }
+
+      interface IUserSearchService {
+          UserData GetUser(int userId);
+          UserData[] GetUsers(...search parameters...);
+          UserData[] GetAdminUsers(...search parameters...);
+          UserData[] GetDeactivatedUsers(...search parameters...);
+          bool IsUserAdmin(int userId);
+          // ...
+      }
+      ```
+    note: |
+      You can already see that the command/query sementics start to derive.
+
+  - v-stack:
+      - doc: |
+          # In a database
+      - img:
+        - src: _assets/views.gif
+    note: |
+      Views
+      - are distinct "view angles" from the same model  
+      - match the read side needs
+
+  - v-stack:
+      - doc: |
+          # In a database - master / mirrors version
+      - img:
+        - src: _assets/7090390-screen-shot-2017-11-01-at-121854-pm.png
+    note: |
+      - Write only on the master
+      - Read only on the mirrors
+
+  - v-stack:
+      - doc: |
+          #  multiple models ?
+    note: |
+      - what if we'd like to have multiple distinct models ? 
+      - one for the master/writes, one or some for the read needs ?
+
+---
+
+title: How to do it wrong
+id: how_to_do_it_wrong
+doc: |
+  ### Command & Query Separation
+  ### Command & Query Responsibility Segregation
+note: |
+  Command ? Query ?
+
+sub:
+  - v-stack:
+      - doc: |
+          # Dual writes
+      - img:
+        - src: _assets/dual_writes-optim.gif
+      - doc: |
+          [source](https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/)
+    note: |
+      - what if any of this writes go wrong ?
+      - will your system have a way to get back to consistency ?
+      - How the F... will this be performant ?
+
+---
+
+title: Event Sourcing
+note: Event sourcing is 'just' replacing the state database by a log of events, aiming state mutations.
+
+sub:
+  - title: Aggregates & Streams
+    v-stack:
+      - img:
+        - src: _assets/FreshPaint-21-2014.01.04-10.55.10.png
+      - doc: |
+          [source](https://thinkbeforecoding.com/post/2014/01/04/Event-Sourcing.-Draw-it)
+  - doc: |
+      ### An Aggregate
+      - Is the business Entity
+      - has a state
+      - handle a Command
+      - produce/emit 0-N Events
+      - apply those events to its state 
+  - doc: |
+      ### The handle/decide method
+      - can decide to do nothing
+      - can decide to return an error
+      - can have dependencies
+      - Should never-ever-ever mutate the state !
+  - doc: |
+      ### The apply method
+      - mutate the state
+      - Is pure deterministic function state + event => state
+      - have **NO** dependencies (not even Datetime.Now)
+      - Will be called to hydrate the aggregate on the next command handle
+      - Should never-ever-ever fail !
+  - doc: |
+      #### A Stream
+      - Store all events for **1 aggregate**
+      - In order !
+
+---
+
+title: "SPOILER :"
+img: 
+  src: _assets/CQRS-ES-FULL.png
+  label: "CQRS-ES-FULL"
+
+sub:
+  - doc: |
+      ## An Event
+      - Represents a state mutation of the system
+      - Very carefully named in passed tense
+        * Ubiquitous language
+        * Don’t be CRUDy
+        * Event != Entity
+
+      [anatomy of a domain event](https://blog.arkency.com/2016/05/the-anatomy-of-domain-event/)
+
+    note: |
+      Do you a favor : Keep it's structure as simple as you can, you'll have to manage versioning on Events.
+      ex :
+      - UserAdressChanged => UserRelocated
+      - UserRemoved => UserExcluded / UserSubscriptionEnded ...
+
+  - img:
+      src: _assets/no_eraser.png
+      label: "No eraser !"
+    note: |
+      - An event in Immutable !
+      - there is no eraser in those pictures.
+      - erasing or changing is not a thing in some industries (banking for example) => regulation / auditability.
+      - we do not change the past, same as real world.
+      - if we fucked up, we correct it by registering some correction event.
+
+---
+
+title: "SPOILER again :"
+img: 
+  src: _assets/CQRS-ES-FULL.png
+  label: "CQRS-ES-FULL"
+
+sub:
+  - title: The Event Store
+    doc: |
+      - is the source of all truth
+      - has a very simple schema : [StreamId, EventNumber, EventName, EventPayload]
+      - append only, **no update or delete**
+      - Store events **in order** for each streams
+      - Guarantees transaction on a single stream
+      - Is fast to query on a single stream,
+        * in **EventNumber** ascending order
+        * and from a given position/EventNumber.
+        
+  - title: "Event Store : Bonus points"
+    doc: |
+      - should be able to give an aggregated "stream of all streams"
+      - should be able to re-partition streams according to projections needs (by categories, by event type, by ... custom)
+    img:
+      src: _assets/eventstore-logo.png
+      label: "EventStoreDB"
+
+---
+
+title: "Projections"
+img: 
+  src: _assets/CQRS-ES-FULL.png
+note: |
+  - Materialize the read side of the system
+  - Can focus on specific read needs (performances, aggregations, ...)
+
+---
+
+title: "You said super powers ?"
+doc: 🎵 it's a kind of magic 🎵 
+
+sub:
+  - title: "You can get super specialized read models"
+    doc: |
+      the right tool in the right place
+  - title: "You don't loose information"
+    doc: |
+      C.R.U.~~D~~ by design
+    note: |
+      - you remember every change of the system.
+      - you can get value from it
+  - title: "You can plug any projection"
+    doc: |
+      - at any time
+      - so you can answer yes to past needs
+  - title: "Time machine"
+    doc: |
+      - you can just read the event store up to a point in time
+    note: |
+      You can use it reproduce bugs with the exact state of a aggregate at the time (from production)
+  - title: "Audit for free"
+    doc: |
+      - the event store is basically a business audit log.
+  - title: "Power to fail"
+    doc: |
+      - you can create an other projection and get rid of the old one with very little impact on the rest of the system
+    note: |
+      - this is about changing the dabatase for one of your read needs
+      - project from the start until it catches up
+      - then switch the read api to the new persistence
+      - and drop the old one
+  - title: "Power to scale"
+    doc: |
+      - you can scale the read side independently from the write side
+  - title: BDD testing made stupid simple
+    doc: |
+      ### Given
+      - An Aggregate
+      - Some (mocked) dependencies
+      - A list of past events
+
+      ### When
+      A Command
+
+      #### Then
+      - A list of Events
+      - or an Error (and !important **0 events**)
+    note: |
+      At a point we could write those tests in documents, not code.
+
+---
+
+title: "What could possibly go wrong ? ?"
+img: 
+  label: 2 hard problems in distributed systems
+  src: _assets/2hardproblems.png
+
+sub:
+  - title: Eventual consistency
+    doc: The read model can be late, you have to think about it at all time.
+    note: |
+      - The same way the user can decide on unfresh informations (while he thinks the state can change).
+      - This problem is emplified in E.S., a projection can be minutes late !
+
+  - title: Idempotency / Ordering
+    doc: |
+      Most of the time you'll get events "exactly once".
+      If you think it's guaranteed, sometimes you'll get "undocumented features".
+    note: |
+      - what if you receive twice "an account received +200 €" event.
+      - what if you receive some user change after it gets deleted.
+      - it's too slow to checkpoints each event.
+      - you can distribute charge accros multiple consumers, sometimes they can receive the same event.
+
+  - title: Idempotency / Ordering - Multiple strategies
+    doc: |
+      - save version on the readmodel
+      - save latest projected event epoch
+      - don't care !
+      
+      ...
+      Depending on the targeted read model and business logic !
+
+  - title: Split brains
+    doc: |
+      Distinct projections can have distinct delays ...
+
+---
+
+title: Versioning events
+img:
+  src: _assets/esversioning.png
+  label: "Versionning ES"
+doc: |
+  [Es Versioning by Greg Young](https://leanpub.com/esversioning)
+
+---
+
+title: Should you do C.Q.(R).S.
+doc: |
+  ### YES !
+  - Have it in mind, write & read needs are NOT equals.
+  - At the very minimum : distinct methods.
+
+---
+
+title: Should you do Event Sourcing ?
+doc: |
+  ### Yes ... ish !
+  - if the domain is your core domain
+  - if you can turn it into a competitive advantage
+  - then it'll justify the over-costs
+
+  But at the very least now you know about it's existence.
+note: |
+  - Needs microservices and all the devops with that
+  - Needs distributed tracing (heard about Open Telemetry ?)
+
+
+---
+
+title: Play spotting CQRS/ES
+note: |
+  play spotting CQRS/ES
+  - on LeBonCoin, when your ad have to follow a workflow for you ad to be published
+  
+  - on AirBnb => when you edit your flat and then back to the page nothing changed (projection delay)
+
+  - When you have delay on the view : there is some queuing involved (or cache has not been properly invalidated)
